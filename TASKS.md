@@ -4,7 +4,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
 
 ## Fase 1: MVP (Mínimo Producto Viable)
 - [ ] **Configuración Inicial**
-  - [ ] Crear estructura de directorios siguiendo `noa-bot/` definido en el PRD (Sección 5).
+  - [ ] Crear estructura de directorios siguiendo `noa-bot/` definido en el PRD (Sección IV).
   - [ ] Configurar entorno virtual y `requirements.txt`.
   - [ ] Configurar Docker y Docker Compose básico.
 - [ ] **Backend Base**
@@ -20,7 +20,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
   - [ ] Implementar etiquetado (tags) de contactos en WhatsApp.
 - [ ] **Análisis de OpenAI**
   - [ ] Implementar servicio de OpenAI (`app/services/openai.py`).
-  - [ ] Configurar Prompt del Sistema (Sección 7 PRD).
+  - [ ] Configurar Prompt del Sistema (Sección VI PRD).
   - [ ] Implementar detección de intención y extracción de datos básicos.
 - [ ] **Persistencia**
   - [ ] Configurar base de datos SQLite para desarrollo.
@@ -36,7 +36,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
   - [ ] Implementar motor de recomendación de servicios (`RECOMMEND`).
 - [ ] **Análisis Avanzado**
   - [ ] Implementar análisis de sentimiento (`app/services/sentiment.py`).
-  - [ ] Implementar scoring de leads (`Sección 7 PRD`).
+  - [ ] Implementar scoring de leads (`Sección VI PRD`).
 
 ## Fase 3: Escalamiento y CRM
 - [ ] **Escalamiento Humano**

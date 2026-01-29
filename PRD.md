@@ -1,142 +1,146 @@
 # PRD — NOA (Networked Operational Assistant)
 
-## 1. Resumen y Objetivos
+## I. RESUMEN Y OBJETIVOS
 
-NOA es un asistente conversacional para WhatsApp diseñado para Noire Collective. Su función es automatizar la primera fase de atención al cliente, calificando prospectos y recomendando servicios mediante IA.
+NOA es un asistente conversacional avanzado para WhatsApp diseñado para **Noire Collective**. Su propósito principal es automatizar la fase inicial de atención al cliente, calificando prospectos y ofreciendo recomendaciones personalizadas mediante Inteligencia Artificial.
 
-### Objetivos:
-* Automatizar la calificación de leads.
-* Reducir la carga operativa humana.
-* Recomendar servicios y planes adecuados mediante RAG.
-* Centralizar datos de prospectos y detectar riesgos/conflictos.
-* Mejorar la tasa de cierre y el ticket medio.
-
----
-
-## 2. Público Objetivo
-
-* Emprendedores y PYMES.
-* Negocios locales y marcas personales.
-* Proyectos digitales que buscan profesionalizar su atención.
+### Objetivos Principales:
+- **Automatización**: Gestionar el primer contacto sin intervención humana.
+- **Calificación (Lead Scoring)**: Identificar prospectos de alto valor.
+- **Personalización**: Recomendar servicios específicos mediante un motor RAG.
+- **Escalamiento Inteligente**: Transferir a agentes humanos solo cuando sea necesario o el valor del lead lo justifique.
+- **Eficiencia Operativa**: Reducir la carga de trabajo manual y mejorar la tasa de conversión.
 
 ---
 
-## 3. Personalidad del Asistente
+## II. PÚBLICO OBJETIVO Y PERSONALIDAD
 
-* **Nombre**: NOA
-* **Estilo**: Profesional, directo, neutro.
-* **Restricciones**: Sin emojis, sin informalidad, orientado estrictamente a resultados.
+### Público Objetivo:
+- Emprendedores, PYMES y negocios locales.
+- Marcas personales y proyectos digitales.
 
----
-
-## 4. Alcance del Proyecto
-
-### Incluye:
-* Recepción de mensajes y gestión de estado (FSM).
-* Análisis semántico, de sentimiento y motor RAG.
-* Recomendaciones de servicios y scoring de leads.
-* Etiquetado automático en WhatsApp y escalamiento humano.
-
-### No Incluye:
-* Cierre de contratos o facturación.
-* Soporte postventa.
+### Personalidad de NOA:
+- **Nombre**: NOA
+- **Estilo**: Profesional, directo y neutro.
+- **Restricciones**: No utiliza emojis, no usa lenguaje informal, mantiene un enfoque estrictamente orientado a resultados.
 
 ---
 
-## 5. Arquitectura y Stack Tecnológico
+## III. ESPECIFICACIONES FUNCIONALES
 
-### Flujo de Datos:
-WhatsApp (Evolution API) ↔ Webhook Backend (Python/FastAPI) ↔ OpenAI API ↔ RAG Engine ↔ Base de Datos.
+### Alcance (Incluye):
+- Recepción de mensajes y gestión de estados conversacionales (FSM).
+- Análisis semántico y de sentimiento.
+- Recomendación de servicios basada en catálogo (RAG).
+- **Etiquetado automático** de contactos en WhatsApp según estado y score.
+- Escalamiento a agentes humanos bajo condiciones específicas.
 
-### Stack:
-* **Backend**: Python 3.11+, FastAPI, Uvicorn.
-* **IA**: OpenAI API (LLM + Embeddings).
-* **Bases de Datos**: PostgreSQL (Pro), SQLite (Dev), Redis (Cache de sesiones).
-* **RAG**: FAISS / ChromaDB + OpenAI Embeddings.
-* **Infraestructura**: Docker, Docker Compose, Nginx, VPS Linux.
+### Fuera de Alcance:
+- Cierre formal de contratos y facturación.
+- Soporte postventa detallado.
+
+---
+
+## IV. ARQUITECTURA TÉCNICA Y STACK
+
+### Flujo de Arquitectura:
+`WhatsApp (Evolution API) ↔ Webhook Backend (FastAPI) ↔ OpenAI API ↔ RAG Engine ↔ DB`
+
+### Stack Tecnológico:
+- **Backend**: Python 3.11+, FastAPI, Uvicorn.
+- **IA**: OpenAI API (GPT-4 para lógica, Embeddings para RAG).
+- **Bases de Datos**: PostgreSQL (Producción), SQLite (Desarrollo), Redis (Caché de sesiones).
+- **RAG**: FAISS / ChromaDB como almacén vectorial.
+- **Infraestructura**: Docker, Docker Compose, Nginx, VPS Linux.
 
 ### Estructura del Proyecto:
 ```text
 noa-bot/
 ├── app/
 │   ├── main.py, config.py
-│   ├── routes/, services/ (openai, rag, sentiment, recommender)
+│   ├── routes/ (webhooks)
+│   ├── services/ (openai, rag, sentiment, recommender)
 │   ├── db/ (models, session)
 │   └── flows/ (states)
-├── data/ (services.json), vectorstore/
+├── data/ (services.json)
+├── vectorstore/ (faiss_index)
 └── docker-compose.yml
 ```
 
 ---
 
-## 6. Flujo Conversacional y Modelo de Estados (FSM)
+## V. LÓGICA CONVERSACIONAL Y ESTADOS (FSM)
 
-### Estados de la FSM:
-1. **INIT / ASK_NAME**: Bienvenida y captura de nombre.
-2. **ASK_GIRO**: Identificación de industria.
-3. **ASK_REDES**: Validación de presencia digital.
-4. **ASK_PROBLEMA**: Captura de necesidad principal.
-5. **ANALYZE**: Procesamiento de contexto, sentimiento y scoring.
-6. **RECOMMEND**: Propuesta de solución basada en RAG.
-7. **HANDOFF**: Transferencia a agente humano (si aplica).
-8. **CLOSED**: Cierre de sesión.
+NOA opera mediante una **Máquina de Estados Finitos (FSM)** para garantizar un flujo consistente:
+
+1.  **INIT / ASK_NAME**: Saludo inicial y captura de nombre.
+2.  **ASK_GIRO**: Identificación del ramo o industria.
+3.  **ASK_REDES**: Validación de presencia digital.
+4.  **ASK_PROBLEMA**: Descripción de la necesidad u objetivo principal.
+5.  **ANALYZE**: Procesamiento interno (Intención, Sentimiento, Scoring).
+6.  **RECOMMEND**: Presentación de propuesta basada en el catálogo (RAG).
+7.  **HANDOFF**: Transferencia a asesor humano si se cumplen los criterios.
+8.  **CLOSED**: Finalización de la interacción.
 
 ### Manejo de Objeciones:
-* **"¿Para qué el nombre?"**: "Para personalizar la atención y asignarte un asesor adecuado."
-* **"Está caro"**: "La propuesta se basa en impacto y retorno; podemos ajustar el alcance."
+- El asistente cuenta con respuestas predefinidas para objeciones sobre privacidad (nombre), costo de servicios y dudas técnicas iniciales.
 
 ---
 
-## 7. Componentes de Inteligencia y Lógica de Negocio
+## VI. INTELIGENCIA ARTIFICIAL Y NEGOCIO
 
-### Motor RAG:
-Pipeline: Normalización → Embedding → Similarity Search → Filtrado → Inyección de Contexto → Respuesta.
-Fuentes: Catálogo de servicios, planes, precios y FAQs (data/services.json).
+### Motor RAG (Retrieval-Augmented Generation):
+- **Proceso**: Normalización → Embedding → Búsqueda de Similitud → Inyección de Contexto → Respuesta Generada.
+- **Fuente**: Catálogo estructurado de servicios, planes y precios en JSON.
 
-### Análisis y Scoring:
-* **Sentimiento**: Clasificación en Positivo, Neutral, Negativo o Riesgo (Triggers: quejas, urgencia).
-* **Scoring (0-100)**: Basado en presupuesto, tamaño, claridad, urgencia y autoridad.
+### Análisis y Calificación:
+- **Sentimiento**: Clasificación (Positivo, Neutral, Negativo, Riesgo).
+- **Lead Scoring (0-100)**: Basado en presupuesto, claridad de objetivos, urgencia y autoridad del contacto.
 
 ### Prompt del Sistema:
-"Eres NOA, asistente profesional de Noire Collective. Objetivo: Calificar, analizar, recomendar y escalar. Reglas: Directo, sin emojis, no inventar, mantener contexto."
+- "Eres NOA, asistente profesional de Noire Collective. Objetivo: Calificar, analizar, recomendar y escalar. Reglas: Directo, sin emojis, no inventar datos, mantener el contexto."
 
 ---
 
-## 8. Datos, Memoria y Escalamiento
+## VII. GESTIÓN DE DATOS Y ESCALAMIENTO
 
-### Datos Capturados:
-Teléfono, nombre, giro, redes, problema, servicio/plan recomendado, sentimiento, score y timestamp (siempre en formato UTC).
+### Datos Requeridos:
+- Teléfono, nombre, giro, redes, problema, servicio/plan recomendado, sentimiento, score y **timestamp (siempre en formato UTC)**.
 
-### Gestión de Etiquetas (WhatsApp Tags):
-El sistema debe etiquetar automáticamente al contacto en WhatsApp mediante Evolution API según su estado:
-* `Lead-Nuevo`, `Lead-Calificado`, `Lead-Prioridad-Alta`, `Requiere-Humano`.
+### Etiquetado en WhatsApp (Tags):
+Uso de Evolution API para asignar etiquetas automáticas:
+- `Lead-Nuevo`, `Lead-Calificado`, `Lead-Prioridad-Alta`, `Requiere-Humano`.
 
-### Escalamiento Humano:
-Condiciones: Solicitud directa, sentimiento de riesgo, score > 80 o ticket > $10,000.
-
----
-
-## 9. Seguridad, Métricas y Operaciones
-
-### Seguridad:
-Encriptación, tokens seguros, backups automáticos y control de acceso por logs.
-
-### Métricas de Éxito:
-* +40% conversión.
-* -60% carga operativa humana.
-* +30% ticket medio.
-
-### Manejo de Errores:
-Fallback a derivación humana en caso de fallos en la API de OpenAI o tiempos de espera agotados.
+### Criterios de Escalamiento Humano:
+- Solicitud directa del usuario.
+- Detección de sentimiento negativo o riesgo.
+- Lead Score > 80.
+- Valor potencial de ticket > $10,000.
 
 ---
 
-## 10. Roadmap y Versionado
+## VIII. SEGURIDAD Y OPERACIONES
 
-* **Fase 1 (MVP)**: Flujo básico, FSM e integración con WhatsApp.
-* **Fase 2 (RAG)**: Implementación de motor vectorial y recomendaciones.
-* **Fase 3 (CRM)**: Integración con sistemas externos y escalamiento avanzado.
-* **Fase 4 (BI)**: Dashboards de métricas y optimización de prompts.
-* **Fase 5 (Multi-agente)**: Soporte para múltiples instancias y departamentos.
+- **Seguridad**: Encriptación de datos, gestión segura de tokens mediante variables de entorno, control de acceso mediante logs detallados.
+- **Manejo de Errores**: Fallback automático a transferencia humana si el motor de IA o las APIs externas fallan.
+- **Despliegue**: Proceso automatizado con Docker; migraciones de base de datos y carga de vectores iniciales.
 
-**Versión Actual**: v1.0 (MVP)
+---
+
+## IX. ROADMAP Y MÉTRICAS DE ÉXITO
+
+### Roadmap:
+1.  **Fase 1 (MVP)**: Flujo de conversación básico y estados.
+2.  **Fase 2 (RAG)**: Integración de catálogo y recomendaciones inteligentes.
+3.  **Fase 3 (CRM & Etiquetas)**: Sincronización externa y etiquetado avanzado.
+4.  **Fase 4 (BI & Analytics)**: Dashboards de métricas y optimización de prompts.
+5.  **Fase 5 (Multi-agente)**: Soporte para múltiples instancias y departamentos.
+
+### Definición de Éxito:
+- Incremento del 40% en la tasa de conversión.
+- Reducción del 60% en la carga de atención inicial humana.
+- Mejora en la precisión de las recomendaciones de servicio.
+
+---
+**Versión**: 1.1
+**Última Actualización**: Timestamp UTC actual
