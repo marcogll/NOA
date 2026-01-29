@@ -13,7 +13,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
   - [ ] Configurar logs y manejo de errores globales.
 - [ ] **Conversación y Estados (FSM)**
   - [ ] Implementar motor de estados en `app/flows/states.py`.
-  - [ ] Definir lógica de transición para los estados: INIT, ASK_NAME, ASK_GIRO, ASK_REDES, ASK_PROBLEMA.
+  - [ ] Definir lógica de transición para los estados: INIT, ASK_NAME, ASK_INDUSTRY, ASK_SOCIAL_MEDIA, ASK_PROBLEM.
 - [ ] **Integración WhatsApp**
   - [ ] Implementar servicio para Evolution API.
   - [ ] Configurar Webhook para recepción de mensajes.

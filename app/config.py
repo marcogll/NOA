@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     # Evolution API
     EVOLUTION_API_URL: Optional[str] = None
     EVOLUTION_API_TOKEN: Optional[str] = None
+    EVOLUTION_INSTANCE: Optional[str] = "noa_instance"
 
     # Database
     POSTGRES_SERVER: str = "db"
