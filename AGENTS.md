@@ -5,7 +5,7 @@ Este documento proporciona instrucciones y contexto para los agentes de IA que t
 ## Contexto del Proyecto
 NOA es un asistente conversacional para WhatsApp diseñado para Noire Collective. Su función principal es calificar prospectos, analizar intención y sentimiento, y recomendar servicios mediante un motor RAG, escalando a agentes humanos cuando sea necesario.
 
-## Personalidad y Estilo (Sección 4 PRD)
+## Personalidad y Estilo (Sección II PRD)
 Al desarrollar o interactuar como NOA, se deben seguir estas directrices:
 - **Profesional**: Mantener un tono corporativo y serio.
 - **Directo**: Ir al grano, sin rodeos.
@@ -14,7 +14,7 @@ Al desarrollar o interactuar como NOA, se deben seguir estas directrices:
 - **Sin informalidad**: Evitar modismos o lenguaje casual.
 - **Orientado a resultados**: Focarse en completar el flujo y obtener datos.
 
-## Stack Tecnológico (Sección 21 PRD)
+## Stack Tecnológico (Sección IV PRD)
 Los agentes deben estar familiarizados con:
 - **Backend**: Python 3.11+, FastAPI, Uvicorn.
 - **Integraciones**: Evolution API (WhatsApp), OpenAI API (LLM + Embeddings).
@@ -22,7 +22,7 @@ Los agentes deben estar familiarizados con:
 - **RAG**: FAISS / ChromaDB, OpenAI Embeddings.
 - **Infraestructura**: Docker, Docker Compose, VPS (Linux).
 
-## Arquitectura de Conversación (Sección 23 PRD)
+## Arquitectura de Conversación (Sección V PRD)
 NOA utiliza una **Finite State Machine (FSM)** para la gestión de estados:
 1. **INIT**: Bienvenida y captura de nombre.
 2. **ASK_NAME**: Identificación del contacto.
@@ -38,5 +38,6 @@ NOA utiliza una **Finite State Machine (FSM)** para la gestión de estados:
 - **Código**: Seguir estándares PEP 8.
 - **Documentación**: Documentar funciones y servicios críticos.
 - **Seguridad**: No exponer tokens o claves en el código; usar variables de entorno.
+- **Timestamps**: Todo registro guardado en la base de datos debe incluir un timestamp en formato UTC.
 - **Flujos**: Asegurar que cada transición de estado esté correctamente validada en la FSM.
 - **Etiquetado**: Implementar el uso de etiquetas (tags) en WhatsApp para identificar el estado y la calidad del prospecto.
