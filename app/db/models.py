@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 
 Base = declarative_base()
 
+
 class Lead(Base):
     __tablename__ = "leads"
 
@@ -14,9 +15,14 @@ class Lead(Base):
     social_media = Column(String)
     problem = Column(String)
     sentiment = Column(String)
-    score = Column(Float)
+    intent = Column(String)
+    lead_score = Column(Float)
     recommended_service = Column(String)
 
     # Timestamps in UTC
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    updated_at = Column(
+        DateTime,
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )

@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from typing import Optional
 
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "NOA - Networked Operational Assistant"
     VERSION: str = "1.0.0"
@@ -14,10 +15,14 @@ class Settings(BaseSettings):
     EVOLUTION_API_TOKEN: Optional[str] = None
     EVOLUTION_INSTANCE: Optional[str] = "noa_instance"
 
+    # External Webhooks
+    EXTERNAL_WEBHOOK_URL_PROD: Optional[str] = None
+    EXTERNAL_WEBHOOK_URL_TEST: Optional[str] = None
+
     # Database
-    POSTGRES_SERVER: str = "db"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
+    POSTGRES_SERVER: str = "db"
     POSTGRES_DB: str = "noa_db"
     DATABASE_URL: Optional[str] = None
 
@@ -27,6 +32,16 @@ class Settings(BaseSettings):
             return self.DATABASE_URL
         return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}/{self.POSTGRES_DB}"
 
+    @property
+    def async_database_url(self) -> str:
+        if self.DATABASE_URL:
+            # For SQLite, use aiosqlite instead of asyncpg
+            if self.DATABASE_URL.startswith("sqlite"):
+                return self.DATABASE_URL.replace("sqlite://", "sqlite+aiosqlite://")
+            # Convert PostgreSQL sync URL to async
+            return self.DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
+        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}/{self.POSTGRES_DB}"
+
     # Redis
     REDIS_HOST: str = "redis"
     REDIS_PORT: int = 6379
@@ -34,5 +49,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
+
 
 settings = Settings()

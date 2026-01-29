@@ -1,0 +1,11 @@
+INFO:     Started server process [702515]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:2311 (Press CTRL+C to quit)
+INFO:     127.0.0.1:44760 - "POST /api/v1/webhook HTTP/1.1" 200 OK
+⚠️ API failed, simulating message to 5218441026472: Bienvenido a Noire Collective. Soy NOA 👋 ¿Podría darme su nombre? | Error: Client error '404 Not Found' for url 'https://evolution.soul23.cloud/message/sendText/3e8f127b-76d7-481e-9c60-3d1c6807ccaa'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+⚠️ Tags API failed, simulating for 5218441026472: ['NEW_LEAD'] | Error: Client error '404 Not Found' for url 'https://evolution.soul23.cloud/contact/updateTags/3e8f127b-76d7-481e-9c60-3d1c6807ccaa'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+INFO:     127.0.0.1:44460 - "GET /aperture HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44460 - "GET / HTTP/1.1" 200 OK

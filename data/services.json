@@ -1,14 +1,124 @@
-[
-  {
-    "id": "identidad_visual",
-    "name": "Identidad Visual",
-    "description": "Desarrollo de marca y elementos visuales.",
-    "plans": ["Básico", "Premium"]
-  },
-  {
-    "id": "web_development",
-    "name": "Desarrollo Web",
-    "description": "Creación de sitios web y tiendas online.",
-    "plans": ["Landing Page", "Ecommerce"]
-  }
-]
+{
+  "services": [
+    {
+      "category": "Diseño",
+      "service": "Identidad Visual",
+      "description": "Creación de logotipo profesional, manual de marca, paleta de colores, tipografía, aplicaciones y archivos listos para impresión y redes sociales. Incluye hasta 3 rondas de ajustes.",
+      "price_normal": 3849,
+      "price_intro": 3465
+    },
+    {
+      "category": "Marketing Redes",
+      "service": "Creativos para Redes",
+      "description": "15 diseños gráficos profesionales, 5 videos cortos optimizados para redes sociales y contenidos enfocados en engagement y conversión.",
+      "price_normal": 3099,
+      "price_intro": 2790
+    },
+    {
+      "category": "Diseño",
+      "service": "Flyers o Trípticos",
+      "description": "Diseño de flyer o tríptico digital o para impresión, adaptado al branding del cliente.",
+      "price_normal": 1299,
+      "price_intro": 1170
+    },
+    {
+      "category": "Diseño",
+      "service": "Tarjetas de Presentación",
+      "description": "Diseño profesional de tarjetas, incluye archivos listos para impresión.",
+      "price_normal": 1299,
+      "price_intro": 1170
+    },
+    {
+      "category": "Diseño",
+      "service": "Banners Digitales",
+      "description": "Diseño de banners publicitarios para redes, anuncios y sitios web.",
+      "price_normal": 799,
+      "price_intro": 720
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "Landing Page Express",
+      "description": "Landing page responsive con formulario, SEO básico y optimización para leads.",
+      "price_normal": 7699,
+      "price_intro": 6930
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "Sitio Web Corporativo",
+      "description": "Sitio web hasta 5 páginas, optimizado para SEO, integración con analítica.",
+      "price_normal": 12899,
+      "price_intro": 11610
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "E-commerce Completo",
+      "description": "Tienda online con catálogo, pasarelas de pago, WhatsApp y automatización.",
+      "price_normal": 17499,
+      "price_intro": 15750
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "Bot WhatsApp (6 meses)",
+      "description": "Automatización de atención, flujos personalizados e integración con CRM.",
+      "price_normal": 3999,
+      "price_intro": 3600
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "Extensión Bot (6 meses)",
+      "description": "Renovación del bot, actualizaciones y hasta 3 ajustes de flujos.",
+      "price_normal": 999,
+      "price_intro": 900
+    },
+    {
+      "category": "Servicio Especial",
+      "service": "Encuestas Profesionales",
+      "description": "Formularios interactivos, análisis avanzado y reportes automáticos.",
+      "price_normal": 4700,
+      "price_intro": 4230
+    },
+    {
+      "category": "Producción",
+      "service": "Reel / TikTok",
+      "description": "Edición dinámica de video para Reels y TikTok con efectos y textos.",
+      "price_normal": 1200,
+      "price_intro": 1080
+    },
+    {
+      "category": "Producción",
+      "service": "Podcast / YouTube",
+      "description": "Edición multicámara, 5 clips cortos con subtítulos y branding.",
+      "price_normal": 2899,
+      "price_intro": 2610
+    },
+    {
+      "category": "Producción",
+      "service": "Presentaciones Corporativas",
+      "description": "Diseño de presentaciones animadas profesionales para clientes y ventas.",
+      "price_normal": 2500,
+      "price_intro": 2250
+    },
+    {
+      "category": "Automatización",
+      "service": "Optimización de Procesos",
+      "description": "Análisis de procesos internos, automatización con flujos digitales y reducción de tareas manuales.",
+      "price_normal": 6500,
+      "price_intro": 5850
+    },
+    {
+      "category": "Automatización",
+      "service": "Integración CRM y Leads",
+      "description": "Configuración de CRM, captura automática de leads y seguimiento comercial.",
+      "price_normal": 5200,
+      "price_intro": 4680
+    },
+    {
+      "category": "Automatización",
+      "service": "Dashboard de KPIs",
+      "description": "Panel de métricas con ventas, leads, campañas y rendimiento.",
+      "price_normal": 4800,
+      "price_intro": 4320
+    }
+  ]
+}
+

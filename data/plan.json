@@ -1,0 +1,43 @@
+```json
+{
+  "plans": [
+    {
+      "category": "Planes",
+      "plan": "Básico",
+      "description": "8 diseños gráficos, 5 videos (reels, tiktoks, vlogs), 1 campaña pagada (30 días), 30 min de respuesta a comentarios, 8 historias.",
+      "monthly_cost": 3300,
+      "quarterly_cost": 9405,
+      "semiannual_cost": 17820,
+      "annual_cost": 31680
+    },
+    {
+      "category": "Planes",
+      "plan": "Silver",
+      "description": "10 diseños gráficos, 7 videos, 1 campaña pagada (30 días), 45 min de respuesta a comentarios, 10 historias.",
+      "monthly_cost": 3800,
+      "quarterly_cost": 10830,
+      "semiannual_cost": 20520,
+      "annual_cost": 36480
+    },
+    {
+      "category": "Planes",
+      "plan": "Gold",
+      "description": "12 diseños gráficos, 8 videos, 2 campañas pagadas (30 días), 1 hora de respuesta, 12 historias, página web (hosting incluido, sin dominio).",
+      "monthly_cost": 4800,
+      "quarterly_cost": 13680,
+      "semiannual_cost": 25920,
+      "annual_cost": 46080
+    },
+    {
+      "category": "Planes",
+      "plan": "Black",
+      "description": "14 diseños gráficos, 8 videos, 2 campañas pagadas, 1 hora de respuesta, 14 historias, web con hosting y dominio, papelería impresa, branding completo.",
+      "monthly_cost": 5300,
+      "quarterly_cost": 15105,
+      "semiannual_cost": 28620,
+      "annual_cost": 50880
+    }
+  ]
+}
+```
+
