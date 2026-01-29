@@ -74,9 +74,9 @@ noa-bot/
 NOA opera mediante una **Máquina de Estados Finitos (FSM)** para garantizar un flujo consistente:
 
 1.  **INIT / ASK_NAME**: Saludo inicial y captura de nombre.
-2.  **ASK_GIRO**: Identificación del ramo o industria.
-3.  **ASK_REDES**: Validación de presencia digital.
-4.  **ASK_PROBLEMA**: Descripción de la necesidad u objetivo principal.
+2.  **ASK_INDUSTRY**: Identificación del ramo o industria.
+3.  **ASK_SOCIAL_MEDIA**: Validación de presencia digital.
+4.  **ASK_PROBLEM**: Descripción de la necesidad u objetivo principal.
 5.  **ANALYZE**: Procesamiento interno (Intención, Sentimiento, Scoring).
 6.  **RECOMMEND**: Presentación de propuesta basada en el catálogo (RAG).
 7.  **HANDOFF**: Transferencia a asesor humano si se cumplen los criterios.
@@ -105,11 +105,11 @@ NOA opera mediante una **Máquina de Estados Finitos (FSM)** para garantizar un 
 ## VII. GESTIÓN DE DATOS Y ESCALAMIENTO
 
 ### Datos Requeridos:
-- Teléfono, nombre, giro, redes, problema, servicio/plan recomendado, sentimiento, score y **timestamp (siempre en formato UTC)**.
+- Phone, name, industry, social_media, problem, recommended service/plan, sentiment, score, and **timestamp (always in UTC format)**.
 
 ### Etiquetado en WhatsApp (Tags):
 Uso de Evolution API para asignar etiquetas automáticas:
-- `Lead-Nuevo`, `Lead-Calificado`, `Lead-Prioridad-Alta`, `Requiere-Humano`.
+- `NEW_LEAD`, `QUALIFIED_LEAD`, `HIGH_PRIORITY_LEAD`, `REQUIRES_HUMAN`.
 
 ### Criterios de Escalamiento Humano:
 - Solicitud directa del usuario.

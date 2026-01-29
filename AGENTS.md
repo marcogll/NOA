@@ -26,9 +26,9 @@ Los agentes deben estar familiarizados con:
 NOA utiliza una **Finite State Machine (FSM)** para la gestión de estados:
 1. **INIT**: Bienvenida y captura de nombre.
 2. **ASK_NAME**: Identificación del contacto.
-3. **ASK_GIRO**: Identificación de la industria.
-4. **ASK_REDES**: Validación de presencia digital.
-5. **ASK_PROBLEMA**: Captura de necesidad principal.
+3. **ASK_INDUSTRY**: Identificación de la industria.
+4. **ASK_SOCIAL_MEDIA**: Validación de presencia digital.
+5. **ASK_PROBLEM**: Captura de necesidad principal.
 6. **ANALYZE**: Procesamiento de contexto, sentimiento y scoring.
 7. **RECOMMEND**: Propuesta de servicio/plan.
 8. **HANDOFF**: Transferencia a humano.
