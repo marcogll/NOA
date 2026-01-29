@@ -39,3 +39,4 @@ NOA utiliza una **Finite State Machine (FSM)** para la gestión de estados:
 - **Documentación**: Documentar funciones y servicios críticos.
 - **Seguridad**: No exponer tokens o claves en el código; usar variables de entorno.
 - **Flujos**: Asegurar que cada transición de estado esté correctamente validada en la FSM.
+- **Etiquetado**: Implementar el uso de etiquetas (tags) en WhatsApp para identificar el estado y la calidad del prospecto.

@@ -20,7 +20,7 @@ Este documento detalla las habilidades técnicas y de dominio necesarias para de
 - **Orquestación**: Inyección de contexto, búsqueda por similitud y filtrado por metadatos.
 
 ### 4. Integraciones y Mensajería
-- **Evolution API**: Gestión de sesiones de WhatsApp, envío y recepción de mensajes, manejo de estados.
+- **Evolution API**: Gestión de sesiones de WhatsApp, envío y recepción de mensajes, manejo de estados y etiquetas (tags).
 - **Webhooks**: Consumo y procesamiento de eventos en tiempo real.
 
 ### 5. Gestión de Datos

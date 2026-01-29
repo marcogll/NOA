@@ -17,6 +17,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
 - [ ] **Integración WhatsApp**
   - [ ] Implementar servicio para Evolution API.
   - [ ] Configurar Webhook para recepción de mensajes.
+  - [ ] Implementar etiquetado (tags) de contactos en WhatsApp.
 - [ ] **Análisis de OpenAI**
   - [ ] Implementar servicio de OpenAI (`app/services/openai.py`).
   - [ ] Configurar Prompt del Sistema (Sección 17 PRD).
@@ -41,6 +42,7 @@ Este documento organiza las tareas necesarias para cumplir con el Roadmap y los 
 - [ ] **Escalamiento Humano**
   - [ ] Implementar lógica de transferencia (`HANDOFF`).
   - [ ] Configurar notificaciones a agentes humanos según el score.
+  - [ ] Actualizar etiquetas de WhatsApp basadas en el score del lead.
 - [ ] **Integración CRM**
   - [ ] Sincronizar datos de leads capturados con sistema externo.
 - [ ] **Persistencia de Producción**
