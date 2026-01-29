@@ -1,0 +1,14 @@
+[
+  {
+    "id": "identidad_visual",
+    "name": "Identidad Visual",
+    "description": "Desarrollo de marca y elementos visuales.",
+    "plans": ["Básico", "Premium"]
+  },
+  {
+    "id": "web_development",
+    "name": "Desarrollo Web",
+    "description": "Creación de sitios web y tiendas online.",
+    "plans": ["Landing Page", "Ecommerce"]
+  }
+]
