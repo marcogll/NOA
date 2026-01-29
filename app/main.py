@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.config import settings
+from app.routes import webhooks
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -14,6 +15,8 @@ async def root():
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+app.include_router(webhooks.router, prefix=settings.API_V1_STR, tags=["webhooks"])
 
 if __name__ == "__main__":
     import uvicorn
