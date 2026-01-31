@@ -52,11 +52,34 @@ docker-compose logs -f evolution-api
 
 ## 📱 Configurar WhatsApp
 
-1. **Accede al Manager**: http://localhost:8080/manager
-2. **Inicia sesión** con tu API key: `RaHNDk8eBZ9myHaDhHW5shtuNlS67A85`
-3. **Crea instancia**: Configura con tu número de WhatsApp
-4. **Escanear QR**: Con WhatsApp móvil escanea el código QR
-5. **Configura Webhook**: Apunta a `http://tu-ip-pública:2311/api/v1/webhook`
+### Paso 1: Crear Instancia
+```bash
+# Reemplazar TU_API_KEY_DE_EVOLUTION con tu key de Evolution API
+curl -X POST http://localhost:8080/instance/create \
+  -H "Content-Type: application/json" \
+  -H "apikey: TU_API_KEY_DE_EVOLUTION" \
+  -d '{
+    "instanceName": "NOA_PROD",
+    "integration": "WHATSAPP-BAILEYS",
+    "number": "528442278408",
+    "qrcode": true
+  }'
+```
+
+### Paso 2: Configurar Webhook de NOA Bot
+```bash
+# Configurar webhook para que Evolution API envíe mensajes a NOA Bot
+curl -X POST http://localhost:8080/webhook/set/NOA_PROD \
+  -H "Content-Type: application/json" \
+  -H "apikey: TU_API_KEY_DE_EVOLUTION" \
+  -d '{
+    "url": "http://localhost:2311/api/v1/webhook",
+    "webhook_by_events": true,
+    "base64": false
+  }'
+```
+
+**Nota:** Los webhooks de n8n se configuran en el archivo .env de NOA Bot (ver .env.example), no en Evolution API.
 
 ## 🧪 Testing Local
 

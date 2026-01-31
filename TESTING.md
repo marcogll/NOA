@@ -24,7 +24,7 @@ curl -X POST http://localhost:2311/api/v1/webhook \
     "event": "messages.upsert",
     "data": {
       "key": {
-        "remoteJid": "1234567890@s.whatsapp.net",
+        "remoteJid": "528442278408@s.whatsapp.net",
         "fromMe": false,
         "id": "test_msg_001"
       },
@@ -43,9 +43,16 @@ curl -X POST http://localhost:2311/api/v1/webhook \
 5. **ASK_PROBLEM → ANALYZE**: Enviar problema
 6. **CHECK**: Verificar webhook externo reciba data
 
-#### 3. Test de Webhooks Externos
-- **Producción**: https://flows.soul23.cloud/webhook/E6LzFZhba4xukJjiI1iPVffExQxw4MQMcOqMRdf
-- **Test**: https://flows.soul23.cloud/webhook-test/E6LzFZhba4xukJjiI1iPVffExQxw4MQMcOqMRdf
+#### 3. Test de Webhooks Externos (n8n)
+
+**Nota:** Las URLs de webhooks de n8n se configuran en el archivo .env del proyecto (ver .env.example). Los IDs específicos se obtienen desde tu instancia de n8n.
+
+**Verificación de conectividad:**
+```bash
+# Reemplazar TU_WEBHOOK_ID con el ID real de tu workflow de n8n
+curl https://flows.soul23.cloud/webhook/TU_WEBHOOK_ID_PRODUCCION
+curl https://flows.soul23.cloud/webhook-test/TU_WEBHOOK_ID_TEST
+```
 
 #### 4. Validaciones
 - JSON inválido → 400
@@ -89,24 +96,26 @@ curl -X POST http://localhost:2311/api/v1/webhook \
 ### Webhook Payload Verificación
 ```json
 {
-  "uuid": "existe",
-  "timestamp": "ISO 8601",
+  "uuid": "uuid-único",
+  "timestamp": "2024-01-29T18:30:00Z",
   "source": "NOA_BOT",
-  "instance": "AD4F74469C6C-450A-AF74-20B17F8E4942",
+  "instance": "NOA_PROD",
   "data": {
-    "phone": "+123...",
+    "phone": "+528442278408",
     "name": "capturado",
-    "industry": "capturado", 
+    "industry": "capturado",
     "social_media": "capturado",
     "problem": "capturado",
     "sentiment": "positive/neutral/negative",
     "intent": "detected",
-    "lead_score": 0-100,
+    "lead_score": 85,
     "recommended_service": "de catálogo",
     "state": "CLOSED"
   }
 }
 ```
+
+**Nota:** El nombre de instancia se configura en el archivo .env (EVOLUTION_INSTANCE).
 
 ## 🚨 Issues a Monitor
 
